@@ -25,7 +25,8 @@ def processMultipleTexts(texts, slangDict, wordCount=float('inf'), wordsProcesse
     for i, text in enumerate(texts):
         if(wordsProcessedCount >= wordCount):
             break
-        (wordsProcessedCount, slangCount) = processStr(text, slangDict, wordCount, wordsProcessedCount, slangCount)
+        words = None
+        (wordsProcessedCount, slangCount, words) = processStr(text, slangDict, wordCount, wordsProcessedCount, slangCount)
     return wordsProcessedCount, slangCount
 
 
@@ -60,8 +61,9 @@ def tryItABunch(myFunc, texts , slangDict, startN=10, endN=100, stepSize=10, num
 
 if __name__ == "__main__":
     slangDict = {}
-    slangDict = loadSlang("../dataset/slangs.txt")
-    texts = loadCorpusDf("../dataset/Android_Q/android-10_bd_2019-01-01-00-00-00_rd_2019-04-22-14-07-31.csv") # size = 48136
+    dirname = os.path.dirname(__file__)
+    slangDict = loadSlang(os.path.join(dirname, '../dataset/slangs.txt'))
+    texts = loadCorpusDf(os.path.join(dirname, "./../dataset/Android_Q/android-10_bd_2019-01-01-00-00-00_rd_2019-04-22-14-07-31.csv")) # size = 48136
     
     # Sanity Check: we expect text[2] has two matches. "a3" is replaced twice
     (x, y, proccessedStr) = processStr( string = texts[2], slangDict = slangDict, wordCount = 100, verbose = True)
