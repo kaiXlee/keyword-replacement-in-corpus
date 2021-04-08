@@ -1,0 +1,15 @@
+n't	not
+
+'t	not
+
+'s	is
+
+'re	are
+
+'d	would
+
+'ll	will
+
+'ve	have
+
+'m	am
